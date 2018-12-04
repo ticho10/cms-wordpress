@@ -46,3 +46,22 @@ register_post_type( 'test_portfolio', $args );
  
 }
 add_action( 'init', 'test_register_post_type' );
+
+function portfolio_taxonomy() {
+	$labels = array(
+'name' => _x( 'Item Types', 'taxonomy general name', 'ticho-plug-plugin' ),
+'singular_name' => _x( 'Item Type', 'taxonomy singular name', 'ticho-plug-plugin' ),
+);
+ 
+$args = array(
+'hierarchical' => true,
+'labels' => $labels,
+'show_ui' => true,
+'show_admin_column' => true,
+'query_var' => true,
+'rewrite' => array( 'slug' => 'item-type' ),
+);
+  register_taxonomy( 'portfolio-type', 'ticho-plug-plugin', $args );
+}
+add_action( 'init', 'portfolio_taxonomy' );
+
